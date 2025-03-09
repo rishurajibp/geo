@@ -22,17 +22,19 @@ from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import m3u8
 
-bot = Client("bot",
-             bot_token= "7608875224:AAF8LBNor3sAORm8UwV07FeyKC4gRhZqsWo",
-             api_id= 21705536,
-             api_hash= "c5bb241f6e3ecf33fe68a444e288de2d")
+bot = Client(
+    "bot",
+    bot_token="7608875224:AAF8LBNor3sAORm8UwV07FeyKC4gRhZqsWo",
+    api_id=21705536,
+    api_hash="c5bb241f6e3ecf33fe68a444e288de2d"
+)
 
 if not os.path.exists("downloads"):
     os.makedirs("downloads")
 
 @bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text(f"**Hello , 𝐒𝗍ⱺ𝗅𝖾𐓣 𝐇𝖺𝗉𝗉𝗂𐓣𝖾𝗌𝗌💜\n\nPress /TXT**")
+    editable = await m.reply_text(f"**Hello, 𝐒𝗍ⱺ𝗅𝖾𐓣 𝐇𝖺𝗉𝗉𝗂𐓣𝖾𝗌𝗌💜\n\nPress /TXT**")
 
 @bot.on_message(filters.command("stop"))
 async def restart_handler(_, m):
@@ -42,7 +44,7 @@ async def restart_handler(_, m):
 @bot.on_message(filters.command(["TXT"]))
 async def account_login(bot: Client, m: Message):
     try:
-        editable = await m.reply_text(f"**Hey , 𝐒𝗍ⱺ𝗅𝖾𐓣 𝐇𝖺𝗉𝗉𝗂𐓣𝖾𝗌𝗌💜\n\n𝐒𝖾𝗇𝖽 𝐓𝗑𝗍 𝐅𝗂𝗅𝖾 📁**")
+        editable = await m.reply_text(f"**Hey, 𝐒𝗍ⱺ𝗅𝖾𐓣 𝐇𝖺𝗉𝗉𝗂𐓣𝖾𝗌𝗌💜\n\n𝐒𝖾𝗇𝖽 𝐓𝗑𝗍 𝐅𝗂𝗅𝖾 📁**")
         input: Message = await bot.listen(editable.chat.id)
         x = await input.download()
         await input.delete(True)
