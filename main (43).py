@@ -400,7 +400,7 @@ async def account_login(bot: Client, m: Message):
                             filename = res_file
                             await prog.delete(True)
                             start_time = time.time()
-                            await helper.send_vid(bot, m, cc, filename, thumb, name, prog, start_time)
+                            await helper.send_vid(bot, m, cc, filename, name, prog, start_time)
                             count += 1
                             time.sleep(4)
                         except Exception as e:
