@@ -400,26 +400,20 @@ async def account_login(bot: Client, m: Message):
                             filename = res_file
                             await prog.delete(True)
                             start_time = time.time()
-                            await helper.send_vid(bot, m, cc, filename, thumb, name, prog, start_time)
+                                # Send the video
+                            await helper.send_vid(bot, m, f"**Downloaded:** {name}", filename, thumb, name, prog)
                             count += 1
                             time.sleep(4)
                         except Exception as e:
-                            await prog.delete()
                             await m.reply_text(f"**Download Failed**\n\n**Error:** {str(e)}\n\n**Name:** {name}")
                             if os.path.exists(f"{name}.mp4"):
                                 os.remove(f"{name}.mp4")
                             continue
-                    
-                except Exception as e:
-                    await m.reply_text(f"**Downloading Failed **\n\n**Error** » {str(e)}\n\n**Name** » {name}")
-                    continue
-                    
-        except Exception as e:
-            await m.reply_text(f"Processing failed: {str(e)}")
             
-    except Exception as e:
-        await m.reply_text(f"Command failed: {str(e)}")
-        
+        except Exception as e:
+            await m.reply_text(f"**Downloading Failed **\n\n**Error** » {str(e)}\n\n**Name** » {name}")
+            continue
+    
     finally:
         # Cleanup temporary files
         try:
