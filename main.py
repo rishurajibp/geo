@@ -304,12 +304,6 @@ async def txt_handler(bot: Client, m: Message):
             elif 'media-cdn.classplusapp.com/drm/' in url:
                 url = f"https://www.masterapi.tech/get/cp/dl?url={url}"
 
-            # Add special headers for classx.co.in domain
-            if "transcoded-videos-v2.classx.co.in" in url:
-                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" --no-check-certificates --downloader aria2c --downloader-args "aria2c: --check-certificate=false --continue=true --retry-wait=10 --max-tries=10 -x 16 -s 16 -k 1M"'
-                else:
-                    cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" --downloader aria2c --downloader-args "aria2c: -x 16 -s 16 -k 1M"'
-                
             elif 'videos.classplusapp' in url or "tencdn.classplusapp" in url or "webvideos.classplusapp.com" in url or "media-cdn-alisg.classplusapp.com" in url or "videos.classplusapp" in url or "videos.classplusapp.com" in url or "media-cdn-a.classplusapp" in url or "media-cdn.classplusapp" in url or "alisg-cdn-a.classplusapp" in url:
              url = requests.get(f'https://api.classplusapp.com/cams/uploader/video/jw-signed-url?url={url}', headers={'x-access-token': 'eyJjb3Vyc2VJZCI6IjQ1NjY4NyIsInR1dG9ySWQiOm51bGwsIm9yZ0lkIjo0ODA2MTksImNhdGVnb3J5SWQiOm51bGx9r'}).json()['url']
 
@@ -330,6 +324,12 @@ async def txt_handler(bot: Client, m: Message):
              vid_id =  url.split("/")[-2]
              url =  f"https://madxapi-d0cbf6ac738c.herokuapp.com/{vid_id}/master.m3u8?token={raw_text4}"
 
+                        # Add special headers for classx.co.in domain
+            if "transcoded-videos-v2.classx.co.in" in url:
+                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" --no-check-certificates --downloader aria2c --downloader-args "aria2c: --check-certificate=false --continue=true --retry-wait=10 --max-tries=10 -x 16 -s 16 -k 1M"'
+            else:
+                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" --downloader aria2c --downloader-args "aria2c: -x 16 -s 16 -k 1M"'
+                
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
             name = f'{str(count).zfill(3)}) {name1[:60]} {my_name}'
 
