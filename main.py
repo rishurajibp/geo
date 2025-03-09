@@ -323,12 +323,6 @@ async def txt_handler(bot: Client, m: Message):
             elif '/master.mpd' in url:
              vid_id =  url.split("/")[-2]
              url =  f"https://madxapi-d0cbf6ac738c.herokuapp.com/{vid_id}/master.m3u8?token={raw_text4}"
-
-                        # Add special headers for classx.co.in domain
-            if "transcoded-videos-v2.classx.co.in" in url:
-                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" --no-check-certificates --downloader aria2c --downloader-args "aria2c: --check-certificate=false --continue=true --retry-wait=10 --max-tries=10 -x 16 -s 16 -k 1M"'
-            else:
-                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" --downloader aria2c --downloader-args "aria2c: -x 16 -s 16 -k 1M"'
                 
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
             name = f'{str(count).zfill(3)}) {name1[:60]} {my_name}'
@@ -390,6 +384,11 @@ async def txt_handler(bot: Client, m: Message):
                 ytf = f"b[height<={raw_text2}][ext=mp4]/bv[height<={raw_text2}][ext=mp4]+ba[ext=m4a]/b[ext=mp4]"
             else:
                 ytf = f"b[height<={raw_text2}]/bv[height<={raw_text2}]+ba/b/bv+ba"
+
+            if "transcoded-videos-v2.classx.co.in" in url:
+                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" --no-check-certificates --downloader aria2c --downloader-args "aria2c: --check-certificate=false --continue=true --retry-wait=10 --max-tries=10 -x 16 -s 16 -k 1M"'
+            else:
+                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4" --downloader aria2c --downloader-args "aria2c: -x 16 -s 16 -k 1M"'
             
             if "jw-prod" in url:
                 cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
