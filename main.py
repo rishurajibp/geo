@@ -409,25 +409,7 @@ async def account_login(bot: Client, m: Message):
                             if os.path.exists(f"{name}.mp4"):
                                 os.remove(f"{name}.mp4")
                             continue
-            
-        except Exception as e:
-            await m.reply_text(f"**Downloading Failed **\n\n**Error** » {str(e)}\n\n**Name** » {name}")
-            continue
-    
-    finally:
-        # Cleanup temporary files
-        try:
-            if 'name' in locals():
-                if os.path.exists(f"{name}.mp4"):
-                    os.remove(f"{name}.mp4")
-                if os.path.exists(f"{name}.jpg"):
-                    os.remove(f"{name}.jpg")
-            if os.path.exists("thumb.jpg"):
-                os.remove("thumb.jpg")
-        except Exception as e:
-            await m.reply_text(f"Cleanup failed: {str(e)}")
-        
-        await m.reply_text("**🅓ⱺɳɛ🔰**")
+                          await m.reply_text("**🅓ⱺɳɛ🔰**")
 
 @bot.on_message(filters.command(["cookies"]))
 async def update_cookies(bot: Client, m: Message):
