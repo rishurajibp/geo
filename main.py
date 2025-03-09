@@ -392,10 +392,10 @@ async def account_login(bot: Client, m: Message):
                                 raise Exception("Download failed - File not found")
                             
                             # Verify the file is complete and valid
-                            verify_cmd = f'ffmpeg -v error -i "{res_file}" -f null - 2>&1'
-                            result = subprocess.run(verify_cmd, shell=True, capture_output=True, text=True)
-                            if result.stderr:
-                                raise Exception(f"Invalid or corrupt video file: {result.stderr}")
+                            #verify_cmd = f'ffmpeg -v error -i "{res_file}" -f null - 2>&1'
+                            #result = subprocess.run(verify_cmd, shell=True, capture_output=True, text=True)
+                            #if result.stderr:
+                                #raise Exception(f"Invalid or corrupt video file: {result.stderr}")
                             
                             filename = res_file
                             await prog.delete(True)
